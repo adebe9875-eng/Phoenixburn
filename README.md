@@ -2,8 +2,6 @@
 
 <img src="phoenixburn-logo.png" width="120" alt="PhoenixBurn logo"/>
 
-<img src="VID-20261010-WA0000.mp4" width="180">
-
 # 🔥 PhoenixBurn
 
 ### A real ISO → USB burning tool, built with Python + C
