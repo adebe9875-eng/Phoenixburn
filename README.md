@@ -1,6 +1,7 @@
 <div align="center">
 
 <img src="phoenixburn-logo.png" width="120" alt="PhoenixBurn logo"/>
+<img src="1000027018.png" width="180">
 
 # 🔥 PhoenixBurn
 
