@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PhoenixBurn Wiki - ISO to USB Burner</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #ff6b1a;
+            --dark: #170c10;
+            --panel: #2a141a;
+            --gold: #ffb43c;
+            --text: #f5e9ec;
+            --muted: #8a6b74;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--dark);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--dark) 0%, var(--panel) 100%);
+            border-bottom: 3px solid var(--primary);
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 3em;
+            color: var(--gold);
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        header p {
+            color: var(--muted);
+            font-size: 1.1em;
+        }
+
+        /* Navigation */
+        nav {
+            background-color: var(--panel);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 2px solid var(--primary);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        nav a {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: bold;
+            padding: 10px 15px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        nav a:hover {
+            background-color: var(--primary);
+            color: var(--dark);
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            margin-bottom: 60px;
+            padding: 40px;
+            background: linear-gradient(135deg, var(--panel) 0%, rgba(255, 107, 26, 0.1) 100%);
+            border-radius: 10px;
+            border: 2px solid var(--primary);
+        }
+
+        .hero h2 {
+            font-size: 2.5em;
+            color: var(--gold);
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 1.2em;
+            color: var(--muted);
+            margin-bottom: 30px;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 15px 40px;
+            font-size: 1.1em;
+            font-weight: bold;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: var(--dark);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--gold);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 107, 26, 0.3);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--primary);
+            color: var(--dark);
+        }
+
+        /* Cards */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .card {
+            background-color: var(--panel);
+            padding: 30px;
+            border-radius: 8px;
+            border-left: 5px solid var(--primary);
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(255, 107, 26, 0.2);
+        }
+
+        .card h3 {
+            color: var(--gold);
+            margin-bottom: 15px;
+            font-size: 1.5em;
+        }
+
+        .card p {
+            color: var(--muted);
+            line-height: 1.8;
+        }
+
+        /* Features Section */
+        .features {
+            background-color: var(--panel);
+            padding: 40px;
+            border-radius: 10px;
+            margin: 40px 0;
+        }
+
+        .features h2 {
+            color: var(--gold);
+            margin-bottom: 30px;
+            font-size: 2em;
+        }
+
+        .feature-list {
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .feature-list li {
+            padding: 15px;
+            background-color: rgba(255, 107, 26, 0.1);
+            border-radius: 5px;
+            border-left: 3px solid var(--primary);
+        }
+
+        .feature-list li:before {
+            content: "✓ ";
+            color: var(--primary);
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        /* Installation Section */
+        .installation {
+            background-color: var(--panel);
+            padding: 40px;
+            border-radius: 10px;
+            margin: 40px 0;
+        }
+
+        .installation h2 {
+            color: var(--gold);
+            margin-bottom: 30px;
+            font-size: 2em;
+        }
+
+        .install-step {
+            margin-bottom: 30px;
+            padding: 20px;
+            background-color: rgba(0,0,0,0.3);
+            border-radius: 5px;
+        }
+
+        .install-step h4 {
+            color: var(--primary);
+            margin-bottom: 10px;
+            font-size: 1.2em;
+        }
+
+        .install-step p {
+            color: var(--muted);
+            margin-bottom: 10px;
+        }
+
+        .code-block {
+            background-color: #000;
+            color: #0f0;
+            padding: 15px;
+            border-radius: 5px;
+            font-family: 'Courier New', monospace;
+            overflow-x: auto;
+            margin-top: 10px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--panel);
+            text-align: center;
+            padding: 30px 20px;
+            border-top: 2px solid var(--primary);
+            margin-top: 60px;
+        }
+
+        footer p {
+            color: var(--muted);
+        }
+
+        footer a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2em;
+            }
+
+            .hero h2 {
+                font-size: 1.8em;
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            nav a {
+                display: block;
+                text-align: center;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <h1>🔥 PhoenixBurn</h1>
+        <p>Professional ISO to USB Burner | Cross-Platform | Open Source</p>
+    </header>
+
+    <!-- Navigation -->
+    <nav>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#features">Features</a></li>
+            <li><a href="#installation">Installation</a></li>
+            <li><a href="#guide">Guide</a></li>
+            <li><a href="#download">Download</a></li>
+            <li><a href="#about">About</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Hero Section -->
+        <section class="hero" id="home">
+            <h2>Burn ISOs Like Never Before</h2>
+            <p>Professional-grade ISO to USB burning tool that works on Windows, Linux, macOS, and BSD</p>
+            <div class="cta-buttons">
+                <button class="btn btn-primary" onclick="location.href='#download'">Download Now</button>
+                <button class="btn btn-secondary" onclick="location.href='#guide'">Read Guide</button>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="features" id="features">
+            <h2>Why Choose PhoenixBurn?</h2>
+            <ul class="feature-list">
+                <li>Cross-Platform Support (Windows, Linux, macOS, BSD)</li>
+                <li>Professional C Implementation</li>
+                <li>Byte-by-Byte Verification</li>
+                <li>USB Drive Auto-Detection</li>
+                <li>Safe Mode (Requires Drive Confirmation)</li>
+                <li>Built-in ISO Download</li>
+                <li>SHA-256 Checksum Verification</li>
+                <li>Real-Time Progress Display</li>
+                <li>Open Source & Free Forever</li>
+                <li>AI Assistant (Phoenix Haimi)</li>
+            </ul>
+        </section>
+
+        <!-- Cards Grid -->
+        <div class="cards-grid">
+            <div class="card">
+                <h3>🚀 Fast & Reliable</h3>
+                <p>Written in C for maximum performance. Optimized for all operating systems. Never lose data again.</p>
+            </div>
+            <div class="card">
+                <h3>🔒 Safe & Secure</h3>
+                <p>Multiple verification stages. Your data is protected. Safe mode prevents accidental overwrites.</p>
+            </div>
+            <div class="card">
+                <h3>💻 Works Everywhere</h3>
+                <p>Windows 95+, Linux, macOS, BSD, Unix. One tool for all your systems. No compatibility issues.</p>
+            </div>
+        </div>
+
+        <!-- Installation Section -->
+        <section class="installation" id="installation">
+            <h2>How to Install</h2>
+
+            <div class="install-step">
+                <h4>Step 1: Download PhoenixBurn</h4>
+                <p>Choose your operating system and download the latest version:</p>
+                <ul style="margin-left: 20px; color: var(--muted);">
+                    <li><strong>Windows:</strong> phoenixburn-windows.exe</li>
+                    <li><strong>Linux:</strong> phoenixburn-linux (64-bit)</li>
+                    <li><strong>macOS:</strong> phoenixburn-macos.dmg</li>
+                    <li><strong>Universal (C Source):</strong> phoenixburn-source.tar.gz</li>
+                </ul>
+            </div>
+
+            <div class="install-step">
+                <h4>Step 2: Install Dependencies (Linux/macOS)</h4>
+                <p>If building from source, you'll need a C compiler:</p>
+                <div class="code-block">
+# Ubuntu/Debian
+sudo apt-get install build-essential libusb-1.0-0-dev
+
+# Fedora/RHEL
+sudo dnf install gcc libusb-devel
+
+# macOS
+brew install libusb
+                </div>
+            </div>
+
+            <div class="install-step">
+                <h4>Step 3: Build (Optional)</h4>
+                <p>If building from source code:</p>
+                <div class="code-block">
+tar -xzf phoenixburn-source.tar.gz
+cd phoenixburn
+make
+sudo make install
+                </div>
+            </div>
+
+            <div class="install-step">
+                <h4>Step 4: Run PhoenixBurn</h4>
+                <p>Launch the application:</p>
+                <div class="code-block">
+# Linux/macOS
+sudo ./phoenixburn
+
+# Windows
+phoenixburn.exe
+
+# Or if installed
+phoenixburn
+                </div>
+            </div>
+        </section>
+
+        <!-- Guide Section -->
+        <section id="guide">
+            <h2 style="color: var(--gold); margin-bottom: 30px; font-size: 2em;">User Guide</h2>
+
+            <div class="card" style="margin-bottom: 20px;">
+                <h3>Getting Started</h3>
+                <h4 style="color: var(--primary); margin-top: 15px;">1. Select Your Level</h4>
+                <p style="margin-left: 20px;">When PhoenixBurn starts, choose between:</p>
+                <ul style="margin-left: 40px; color: var(--muted);">
+                    <li><strong>Beginner:</strong> Full assistance from Phoenix Haimi (AI Assistant)</li>
+                    <li><strong>Professional:</strong> Advanced mode, manual control</li>
+                </ul>
+
+                <h4 style="color: var(--primary); margin-top: 15px;">2. Select ISO File</h4>
+                <p style="margin-left: 20px;">Click "Select ISO" and choose your ISO file. PhoenixBurn will verify the checksum.</p>
+
+                <h4 style="color: var(--primary); margin-top: 15px;">3. Select USB Drive</h4>
+                <p style="margin-left: 20px;">Choose your USB drive from the list. PhoenixBurn only shows removable drives for safety.</p>
+
+                <h4 style="color: var(--primary); margin-top: 15px;">4. Confirm Drive Path</h4>
+                <p style="margin-left: 20px;">You MUST type the drive path (e.g., /dev/sdb) to confirm. This prevents accidents.</p>
+
+                <h4 style="color: var(--primary); margin-top: 15px;">5. Burn & Verify</h4>
+                <p style="margin-left: 20px;">Click "Burn" and wait. PhoenixBurn will:</p>
+                <ul style="margin-left: 40px; color: var(--muted);">
+                    <li>Write the ISO file</li>
+                    <li>Flush data to disk (fsync)</li>
+                    <li>Read back every byte</li>
+                    <li>Verify against original ISO</li>
+                </ul>
+            </div>
+
+            <div class="card" style="margin-bottom: 20px;">
+                <h3>Phoenix Haimi Assistant (Beginner Mode)</h3>
+                <p>When you select "Beginner" mode, Phoenix Haimi appears to help you:</p>
+                <ul style="margin-left: 20px; color: var(--muted);">
+                    <li>Click Phoenix to adjust settings (volume, microphone, voice)</li>
+                    <li>Choose voice: Male or Female</li>
+                    <li>Enable/Disable microphone input</li>
+                    <li>Control volume (increase/decrease/mute)</li>
+                    <li>Enable/Disable chat messages</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h3>Safety Features</h3>
+                <ul style="margin-left: 20px; color: var(--muted);">
+                    <li><strong>USB Only:</strong> Only removable/USB drives shown</li>
+                    <li><strong>Path Confirmation:</strong> Must type drive path to proceed</li>
+                    <li><strong>Checksum Verification:</strong> SHA-256 check before burning</li>
+                    <li><strong>Byte-by-Byte Verify:</strong> Every byte compared after burning</li>
+                    <li><strong>Progress Tracking:</strong> Real-time progress with detailed logs</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Download Section -->
+        <section id="download">
+            <h2 style="color: var(--gold); margin-bottom: 30px; font-size: 2em;">Download</h2>
+
+            <div class="cards-grid">
+                <div class="card">
+                    <h3>Windows</h3>
+                    <p>Version 2.0.0</p>
+                    <p style="color: var(--muted); margin-top: 10px;">Supports Windows 95 and later</p>
+                    <button class="btn btn-primary" style="width: 100%; margin-top: 15px;">Download EXE</button>
+                </div>
+                <div class="card">
+                    <h3>Linux</h3>
+                    <p>Version 2.0.0</p>
+                    <p style="color: var(--muted); margin-top: 10px;">Ubuntu, Debian, Fedora, etc.</p>
+                    <button class="btn btn-primary" style="width: 100%; margin-top: 15px;">Download Binary</button>
+                </div>
+                <div class="card">
+                    <h3>macOS</h3>
+                    <p>Version 2.0.0</p>
+                    <p style="color: var(--muted); margin-top: 10px;">Intel & Apple Silicon</p>
+                    <button class="btn btn-primary" style="width: 100%; margin-top: 15px;">Download DMG</button>
+                </div>
+                <div class="card">
+                    <h3>Source Code</h3>
+                    <p>Version 2.0.0</p>
+                    <p style="color: var(--muted); margin-top: 10px;">C & Python Implementation</p>
+                    <button class="btn btn-primary" style="width: 100%; margin-top: 15px;">Download TAR.GZ</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" style="margin-top: 60px;">
+            <div class="card">
+                <h3>About PhoenixBurn</h3>
+                <p style="margin-top: 15px;">PhoenixBurn is a professional ISO to USB burning tool created by Adam from Algeria. Originally designed for efficiency, it evolved into a cross-platform solution that works seamlessly on Windows, Linux, macOS, and BSD systems.</p>
+
+                <p style="margin-top: 15px;">The project includes:</p>
+                <ul style="margin-left: 20px; color: var(--muted);">
+                    <li>High-performance C implementation for core burning</li>
+                    <li>Python implementation for flexibility</li>
+                    <li>Phoenix Haimi AI Assistant for beginner guidance</li>
+                    <li>Complete documentation and wiki</li>
+                    <li>Open-source and free forever</li>
+                </ul>
+
+                <p style="margin-top: 15px;"><strong>Version:</strong> PhoenixBurn 2.0.0</p>
+                <p><strong>License:</strong> Open Source (Free)</p>
+                <p><strong>Platform:</strong> Cross-Platform (Windows, Linux, macOS, BSD)</p>
+                <p><strong>Creator:</strong> Adam</p>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 PhoenixBurn Project. All rights reserved.</p>
+        <p>Created by Adam | <a href="#">GitHub</a> | <a href="#">Documentation</a> | <a href="#">Support</a></p>
+        <p style="margin-top: 15px; font-size: 0.9em;">Free Forever | Open Source | Cross-Platform</p>
+    </footer>
+</body>
+</html>
