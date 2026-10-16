@@ -6,8 +6,6 @@
 
 ### A real ISO → USB burning tool, built with Python + C
 
-**Part of the ALphoenixa OS / dstc project**
-
 ![Platform](https://img.shields.io/badge/platform-Linux-orange?style=flat-square)
 ![Language](https://img.shields.io/badge/GUI-Python%20%2F%20tkinter-blue?style=flat-square)
 ![Language](https://img.shields.io/badge/Core-C-lightgrey?style=flat-square)
