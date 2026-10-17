@@ -313,8 +313,23 @@
 <body>
     <!-- Header -->
     <header>
+        <svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100" style="margin-bottom: 20px;">
+            <defs>
+                <linearGradient id="flameGrad" x1="0%" y1="100%" x2="0%" y2="0%">
+                    <stop offset="0%" stop-color="#a80030"/>
+                    <stop offset="50%" stop-color="#d70a53"/>
+                    <stop offset="100%" stop-color="#ff9500"/>
+                </linearGradient>
+            </defs>
+            <path d="M50 6 C 58 22, 74 26, 74 46 C 74 62, 62 74, 50 74 C 38 74, 26 62, 26 46 C 26 30, 38 28, 42 16 C 44 26, 40 34, 44 40 C 46 30, 52 24, 50 6 Z" fill="url(#flameGrad)"/>
+            <rect x="40" y="76" width="20" height="10" rx="2" fill="#2b2b2b"/>
+            <rect x="44" y="84" width="12" height="6" rx="1" fill="#2b2b2b"/>
+        </svg>
         <h1>🔥 PhoenixBurn</h1>
         <p>Professional ISO to USB Burner | Cross-Platform | Open Source</p>
+        <p style="margin-top: 15px; font-size: 0.95em;">
+            <a href="https://github.com/adebe9875-eng/phoenixburn" style="color: var(--primary); text-decoration: none; border: 2px solid var(--primary); padding: 10px 20px; border-radius: 5px; display: inline-block; transition: all 0.3s;">GitHub Repository</a>
+        </p>
     </header>
 
     <!-- Navigation -->
@@ -545,8 +560,15 @@ phoenixburn
     <!-- Footer -->
     <footer>
         <p>&copy; 2026 PhoenixBurn Project. All rights reserved.</p>
-        <p>Created by Adam | <a href="#">GitHub</a> | <a href="#">Documentation</a> | <a href="#">Support</a></p>
+        <p>Created by Adam | 
+            <a href="https://github.com/adebe9875-eng/phoenixburn">GitHub</a> | 
+            <a href="https://github.com/adebe9875-eng/phoenixburn/wiki">Documentation</a> | 
+            <a href="https://github.com/adebe9875-eng/phoenixburn/issues">Support</a>
+        </p>
         <p style="margin-top: 15px; font-size: 0.9em;">Free Forever | Open Source | Cross-Platform</p>
+        <p style="margin-top: 10px; font-size: 0.85em; color: var(--primary);">
+            Repository: <strong>github.com/adebe9875-eng/phoenixburn</strong>
+        </p>
     </footer>
 </body>
 </html>
