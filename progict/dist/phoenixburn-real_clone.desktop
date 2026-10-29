@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=PhoenixBurn
+Comment=System Flashing Tool
+Exec=/path/to/PhoenixBurn/dist/phoenixburn
+Icon=/path/to/PhoenixBurn/phoenixburn.png
+Terminal=true
+Type=Application
+Categories=Utility;System;
