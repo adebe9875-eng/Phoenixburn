@@ -1,6 +1,7 @@
 <div align="center">
 
-# <img src="phoenixburn-logo.png" width="120" alt="PhoenixBurn logo"/> PhoenixBurn>
+# <img src="phoenixburn-logo.png" width="120" alt="PhoenixBurn logo"/>
+PhoenixBurn
 
 
 ### A real ISO → USB burning tool, built with Python + C
