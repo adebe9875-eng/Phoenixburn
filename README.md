@@ -2,7 +2,6 @@
   
 <img src="phoenix_burn_50 (1).svg" width="120" alt="phoenix_burn_50 (1).svg"/>
 
-PhoenixBurn
 
 
 ### A real ISO → USB burning tool, built with Python + C
